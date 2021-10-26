@@ -2,10 +2,13 @@ from tkinter import *
 from tkinter import messagebox
 import os
 from prediction import get_values
+from bagging_prediction import display_prediction
 
-def get_prediction(transmission,authorization,oversubscription,net_design,hack_prone,protocol,comm_protocol,filesize_trans,firewalls,hard_comp,router,devices):
+"""""
+def get_prediction(values):
     os.system("prediction.py")
-    get_values(transmission,authorization,oversubscription,net_design,hack_prone,protocol,comm_protocol,filesize_trans,firewalls,hard_comp,router,devices)
+    get_values(values)
+"""
 
 
 main_window=Tk()
@@ -106,13 +109,25 @@ def store_values():
     filesize_trans=int(filesize_txt_var.get())
     firewalls=int(firewalls_txt_var.get())
 
+    return [transmission,authorization,oversubscription,net_design,hack_prone,protocol,comm_protocol,filesize_trans,firewalls,hard_comp,router,devices]
+
     #print(type(hard_comp))
     get_prediction(transmission,authorization,oversubscription,net_design,hack_prone,protocol,comm_protocol,filesize_trans,firewalls,hard_comp,router,devices)
 
 
+def adaboost_classifier():
+    values=store_values()
+    get_values(values)
 
+
+
+def bagging_classifier():
+    values=store_values()
+    display_prediction(values)
+    
 
 
 #Button(main_window,text="Get prediction",bg="orange",fg="white",width=20).pack()
-Button(main_window,text="Get prediction",bg="orange",fg="white",width=20,command=store_values).pack()
+Button(main_window,text="Get Adaboost prediction",bg="orange",fg="white",width=20,command=adaboost_classifier).pack()
+Button(main_window,text="Get Bagging prediction",bg="orange",fg="white",width=20,command=bagging_classifier).pack()
 main_window.mainloop()
