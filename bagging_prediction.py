@@ -6,4 +6,5 @@ def display_prediction(values):
     user_values=pd.DataFrame([values])
     print(user_values)
     y=bagging1.classifier.predict(user_values)
+    print(f'Bagging classifier accuracy is {bagging1.accuracy}')
     print(y)
