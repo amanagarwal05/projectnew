@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-import os
+#import os
 from prediction import get_values
 from bagging_prediction import display_prediction
 
@@ -28,6 +28,7 @@ devices_txt_var=StringVar()
 network_id_label=Label(main_window,text="Network ID").pack()
 network_id=Entry(main_window,textvariable=netId_txt_var)
 network_id.pack()
+note=Label(main_window,text="Enter 1 for yes and 0 for no").pack()
 compatible_label=Label(main_window,text="non compatible hardware?").pack()
 hard_compatibility=Entry(main_window,textvariable=Hcom_txt_var)
 hard_compatibility.pack()
@@ -93,26 +94,32 @@ firewalls_value=Entry(main_window,textvariable=firewalls_txt_var)
 firewalls_value.pack()
 
 def store_values():
-    netId = int(netId_txt_var.get())
-    hard_comp = int(Hcom_txt_var.get())
-    router =int( router_txt_var.get())
-    devices=int(devices_txt_var.get() )
+    try:
+         netId = int(netId_txt_var.get())
+         hard_comp = int(Hcom_txt_var.get())
+         router =int( router_txt_var.get())
+         devices=int(devices_txt_var.get() )
 
-    transmission=int(trans_txt_var.get())
-    authorization=int(auth_txt_var.get())
-    oversubscription=int(sub_txt_var.get())
-    net_design=int(design_txt_var.get())
-    hack_prone=int(hack_txt_var.get())
+         transmission=int(trans_txt_var.get())
+         authorization=int(auth_txt_var.get())
+         oversubscription=int(sub_txt_var.get())
+         net_design=int(design_txt_var.get())
+         hack_prone=int(hack_txt_var.get())
 
-    protocol=int(protocol_txt_var.get())
-    comm_protocol=int(comm_prot_txt_var.get())
-    filesize_trans=int(filesize_txt_var.get())
-    firewalls=int(firewalls_txt_var.get())
-
-    return [transmission,authorization,oversubscription,net_design,hack_prone,protocol,comm_protocol,filesize_trans,firewalls,hard_comp,router,devices]
-
+         protocol=int(protocol_txt_var.get())
+         comm_protocol=int(comm_prot_txt_var.get())
+         filesize_trans=int(filesize_txt_var.get())
+         firewalls=int(firewalls_txt_var.get())
+    except ValueError:
+        messagebox.showerror('error','Invalid literal int() error')
+        #print('Invalid literal int() error')
+    try:
+        return [transmission,authorization,oversubscription,net_design,hack_prone,protocol,comm_protocol,filesize_trans,firewalls,hard_comp,router,devices]
+    except UnboundLocalError:
+        messagebox.showerror('error','Your trying to pass a variable before assignment')
+        #print('Your trying to pass a variable before assignment')
     #print(type(hard_comp))
-    get_prediction(transmission,authorization,oversubscription,net_design,hack_prone,protocol,comm_protocol,filesize_trans,firewalls,hard_comp,router,devices)
+    #get_prediction(transmission,authorization,oversubscription,net_design,hack_prone,protocol,comm_protocol,filesize_trans,firewalls,hard_comp,router,devices)
 
 
 def adaboost_classifier():
