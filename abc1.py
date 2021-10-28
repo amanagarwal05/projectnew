@@ -30,9 +30,19 @@ classifier.fit(training_inputs, training_outputs)
 predictions = classifier.predict(testing_inputs)
 accuracy = 100.0 * accuracy_score(testing_outputs, predictions)
 #print ("The accuracy of Adaboost Classifier on testing data is: " + str(accuracy))
+#testSet = [[1,0,0,0,1,0,0,0,0,0,1,0]]
+#test = pd.DataFrame(testSet)
+#predictions_new = classifier.predict(test)
 
 
 
 
-
-
+#print('Adaboost Prediction on the first test set is:',predictions)
+#testSet = [[1,0,1,0,1,1,0,0,1,0,1,0]]
+#test = pd.DataFrame(testSet)
+#predictions = classifier.predict(test)
+#print('Adaboost Prediction on the second test set is:',predictions)
+#testSet = [[1,1,1,0,1,1,0,1,1,1,1,0]]
+#test = pd.DataFrame(testSet)
+#predictions = classifier.predict(test)
+#print('Adaboost Prediction on the third test set is:',predictions)
